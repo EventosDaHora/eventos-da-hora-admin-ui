@@ -53,7 +53,8 @@ export class EventoService {
       hora: '',
       menorDesacompanhado: false,
       categoria: CategoriaEvento.show,
-      organizador: ''
+      organizador: '',
+      sessoes: []
     };
   }
 

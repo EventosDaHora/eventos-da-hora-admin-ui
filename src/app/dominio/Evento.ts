@@ -3,6 +3,7 @@ import { CategoriaEvento } from './enums/CategoriaEvento';
 export interface Evento {
     id: string;
     nome: string;
+    descricao?:string;
     artista ?: string;
     localizacao: Localizacao;
     data: string;
@@ -15,6 +16,8 @@ export interface Evento {
     ingressos: Ingresso[];
     imagemPrincipal ?: string;
     imagemSecundaria ?: string;
+    sessoes?: Sessao[];
+
 }
 
 export interface Ingresso {
@@ -36,4 +39,11 @@ export interface Localizacao {
   pais: string;
   cidade: string;
   local: string;
+}
+
+export interface Sessao {
+    name: string;
+    description: string;
+    ammount: number;
+    quantity: number
 }

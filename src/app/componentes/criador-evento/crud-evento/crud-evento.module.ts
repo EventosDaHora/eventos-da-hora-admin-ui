@@ -5,22 +5,28 @@ import {TableModule} from 'primeng/table';
 import {CriarEventoComponent} from './criar-evento/criar-evento.component';
 import {CrudEventoComponent} from './crud-evento.component';
 import {CardModule} from 'primeng/card';
-import {ButtonModule, ToggleButtonModule, MenuModule, RadioButtonModule, SplitButtonModule, CheckboxModule} from 'primeng';
+import {
+    ButtonModule,
+    CheckboxModule,
+    MenuModule,
+    RadioButtonModule,
+    SplitButtonModule,
+    ToggleButtonModule
+} from 'primeng';
 import {CrudEventoRoutingModule} from './crud-evento-routing.module';
 import {InfraModule} from '../../../infra/infra.module';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {CriarIngressoComponent} from './criar-ingresso/criar-ingresso.component';
+import {CriarIngressoComponent} from './criar-evento/criar-ingresso/criar-ingresso.component';
 import {AccordionModule} from 'primeng/accordion';
-import {TipoPrecoComponent} from './criar-ingresso/tipo-preco/tipo-preco.component';
 import {MapaAmbienteComponent} from './criar-evento/mapa-ambiente/mapa-ambiente.component';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {EventoComponent} from '../../cliente-final/negocio/checkout/evento/main/evento.component';
 import {CardEventoComponent} from '../../cliente-final/view/card-evento/card-evento.component';
-import { MapaLocalComponent } from './criar-evento/mapa-local/mapa-local.component';
-import { ImagemEventoComponent } from './criar-evento/imagem-evento/imagem-evento.component';
+import {MapaLocalComponent} from './criar-evento/mapa-local/mapa-local.component';
+import {ImagemEventoComponent} from './criar-evento/imagem-evento/imagem-evento.component';
 import {PanelModule} from 'primeng/panel';
-
+import {FieldsetModule} from 'primeng/fieldset';
 
 @NgModule({
     declarations: [
@@ -28,7 +34,6 @@ import {PanelModule} from 'primeng/panel';
       CriarEventoComponent,
       CrudEventoComponent,
       CriarIngressoComponent,
-      TipoPrecoComponent,
       MapaAmbienteComponent,
       MapaLocalComponent,
       ImagemEventoComponent
@@ -52,7 +57,8 @@ import {PanelModule} from 'primeng/panel';
         ToggleButtonModule,
         DynamicDialogModule,
         PanelModule,
-        CheckboxModule
+        CheckboxModule,
+        FieldsetModule
     ],
   entryComponents: [
     EventoComponent, CardEventoComponent

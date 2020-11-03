@@ -1,0 +1,49 @@
+<div class="p-grid">
+  <div class="p-col-12 p-md-12 p-lg-12">
+    <div class="input-botao">
+      <app-input-texto id="secao"
+                       label="Seção"
+                       tipo="text"
+                       required="true"
+                       style="width: 100%"
+                       [(ngModel)]="nome" name="tituloEvento">
+      </app-input-texto>
+      <button type="button" pButton pRipple icon="pi pi-plus" (click)="addSection(nome)"></button>
+    </div>
+  </div>
+
+  <div class="p-col-12 p-md-6 p-lg-6" *ngFor="let sessao of evento.sessoes; let i = index">
+    <p-card>
+      <p-header>
+        <div class="header">
+          <h2>{{sessao.name}}</h2>
+          <i class="pi pi-times" (click)="removeSection(i)"></i>
+        </div>
+
+      </p-header>
+      <app-input-texto id="descricao"
+                       placeholder="Descrição"
+                       tipo="text"
+                       [(ngModel)]="sessao.description"
+                       required="true">
+      </app-input-texto>
+
+      <app-input-texto id="preco"
+                       placeholder="Preço"
+                       tipo="number"
+                       [(ngModel)]="sessao.ammount"
+                       required="true">
+      </app-input-texto>
+
+      <app-input-texto id="quantidade"
+                       placeholder="Quantidade"
+                       tipo="number"
+                       [(ngModel)]="sessao.quantity"
+                       required="true">
+      </app-input-texto>
+
+    </p-card>
+  </div>
+
+
+</div>

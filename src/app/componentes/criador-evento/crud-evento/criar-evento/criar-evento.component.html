@@ -10,65 +10,28 @@
 
   <div class="p-col-12 p-md-6 p-lg-6">
     <app-input-texto id="tituloEvento"
-                     [label]="'Título'"
-                     [placeholder]="'Título do Evento'"
-                     [tipo]="'text'"
+                     label="Titulo"
+                     tipo="text"
                      required="true"
                      [(ngModel)]="evento.nome" name="tituloEvento">
     </app-input-texto>
   </div>
 
   <div class="p-col-12 p-md-6 p-lg-6">
-    <app-input-texto id="oraganizador"
-                     [label]="'Organizador'"
-                     [placeholder]="'Nome do organizador'"
-                     [tipo]="'text'"
+    <app-input-texto id="descricaoEvento"
+                     label="Descrição"
+                     tipo="text"
                      required="true"
-                     [(ngModel)]="evento.organizador" name="oraganizador">
+                     [(ngModel)]="evento.nome" name="tituloEvento">
     </app-input-texto>
   </div>
 
-  <div class="p-col-12 p-md-6 p-lg-6">
-    <app-input-texto id="qtdMinima"
-                     label="Quantidade mínima"
-                     tipo="number"
-                     [(ngModel)]="evento.qtdMinima" name="qtdMinima"
-                     required="true">
-    </app-input-texto>
-  </div>
 
   <div class="p-col-12 p-md-6 p-lg-6">
-    <app-input-texto id="qtdMaxima"
-                     label="Quantidade máxima"
-                     tipo="number"
-                     required="true"
-                     [(ngModel)]="evento.qtdMaxima" name="qtdMaxima">
-    </app-input-texto>
-  </div>
-
-  <div class="p-col-12 p-md-6 p-lg-6">
-    <div class="p-grid">
-      <div class="p-col-12 p-md-6 p-lg-6">
-        <app-select [label]="'Tipo'"
-                    [placeholder]="'Tipo do evento'"
-                    [itens]="categorias"
-                    [(ngModel)]="evento.categoria">
-        </app-select>
-      </div>
-
-      <div class="p-col-12 p-md-6 p-lg-6">
-        <div class="menor">
-          <p-toggleButton [(ngModel)]="evento.menorDesacompanhado"
-                         name="menor"
-                         onLabel="Sim"
-                         offLabel="Não"
-                         required="true">
-          </p-toggleButton>
-
-          <p>Permite menor desacompanhado?</p>
-        </div>
-      </div>
-    </div>
+      <app-select placeholder="Categoria"
+                  [itens]="categorias"
+                  [(ngModel)]="evento.categoria">
+      </app-select>
   </div>
 
   <div class="p-col-12 p-md-6 p-lg-6">
@@ -90,6 +53,15 @@
         </app-input-calendar>
       </div>
     </div>
+  </div>
+
+  <div class="p-col-12 p-md-12 p-lg-12">
+    <hr>
+    <h2>Seções/Ingressos</h2>
+  </div>
+
+  <div class="p-col-12 p-md-12 p-lg-12">
+    <app-criar-ingresso [evento]="evento"></app-criar-ingresso>
   </div>
 
   <div class="p-col-12 p-md-12 p-lg-12">
