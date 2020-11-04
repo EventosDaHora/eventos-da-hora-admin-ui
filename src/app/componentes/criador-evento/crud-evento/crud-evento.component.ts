@@ -28,8 +28,6 @@ export class CrudEventoComponent implements OnInit {
         {label: 'Todos os eventos', icon: 'pi pi-fw pi-star-o', routerLink: 'listar-evento'},
         {label: 'Calendário de Eventos', icon: 'pi pi-fw pi-calendar', routerLink: 'calendario'},
         {separator: true},
-        {label: 'Criar Ingresso', icon: 'pi pi-ticket', routerLink: 'criar-ingresso'}
-        // {label: 'Lista de Convidados', icon: 'pi pi-users'}
       ]
     },
       {
