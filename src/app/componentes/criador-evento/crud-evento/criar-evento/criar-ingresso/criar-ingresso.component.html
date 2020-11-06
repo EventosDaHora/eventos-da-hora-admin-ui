@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <div class="p-col-12 p-md-6 p-lg-6" *ngFor="let sessao of evento.sessoes; let i = index">
+  <div class="p-col-12 p-md-6 p-lg-6" *ngFor="let section of event.sections; let i = index">
     <p-card>
       <p-header>
         <div class="header">
@@ -20,7 +20,7 @@
                              label="Nome da seção"
                              placeholder="Nome"
                              tipo="text"
-                             [(ngModel)]="sessao.name"
+                             [(ngModel)]="section.name"
                              required="true">
             </app-input-texto>
           <i class="pi pi-times" (click)="removeSection(i)"></i>
@@ -30,21 +30,21 @@
       <app-input-texto id="descricao"
                        placeholder="Descrição da seção"
                        tipo="text"
-                       [(ngModel)]="sessao.description"
+                       [(ngModel)]="section.description"
                        required="true">
       </app-input-texto>
 
       <app-input-texto id="preco"
                        placeholder="Preço do ingresso para essa seção"
                        tipo="number"
-                       [(ngModel)]="sessao.ammount"
+                       [(ngModel)]="section.ammount"
                        required="true">
       </app-input-texto>
 
       <app-input-texto id="quantidade"
                        placeholder="Quantidade de ingressos para essa seção"
                        tipo="number"
-                       [(ngModel)]="sessao.quantity"
+                       [(ngModel)]="section.qtdTickets"
                        required="true">
       </app-input-texto>
 

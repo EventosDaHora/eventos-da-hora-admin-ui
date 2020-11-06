@@ -1,25 +1,20 @@
 import {ControlValueAccessor} from '@angular/forms';
 import { Input, Directive } from '@angular/core';
 
-@Directive()
 export class AbstractControleValueAccessor implements ControlValueAccessor {
 
-  @Input() val: any;
+  val: any;
 
-  onChange: any = () => {};
-  onTouch: any = () => {};
+  onChange: any = val => {
+    console.log(val);
+  };
 
-  set value(val) {
-    if (val !== undefined && this.val !== val) {
-      this.val = val;
-      this.onChange(val);
-      this.onTouch(val);
-    }
-
-  }
+  onTouched: any = val => {
+    console.log(val);
+  };
 
   writeValue(value: any) {
-    this.value = value;
+    this.val = value;
   }
 
   registerOnChange(fn: any) {
@@ -27,9 +22,17 @@ export class AbstractControleValueAccessor implements ControlValueAccessor {
   }
 
   registerOnTouched(fn: any) {
-    this.onTouch = fn;
+    this.onTouched = fn;
   }
 
+  set value(value: any) {
+    this.val = value;
+    this.onChange(this.val);
+    this.onTouched(this.val);
+  }
 
+  get value() {
+    return this.val;
+  }
 
 }

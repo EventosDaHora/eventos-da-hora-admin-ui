@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Evento} from '../../../../dominio/Evento';
-import {EventoService} from '../../../../services/evento/evento.service';
+import {EventoService} from '../../../../services/event/evento.service';
 
 @Component({
   selector: 'app-formulario-evento',

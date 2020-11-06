@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {EventoService} from '../../../services/evento/evento.service';
-import {Evento} from '../../../dominio/Evento';
 import {MenuItem} from 'primeng';
+import {EventDTO} from "../../../dominio/Event";
+import {EventService} from "../../../services/event/event.service";
 
 @Component({
   selector: 'app-crud-evento',
@@ -10,17 +10,17 @@ import {MenuItem} from 'primeng';
 })
 export class CrudEventoComponent implements OnInit {
 
-  eventos: Evento[];
+  events: EventDTO[];
 
   cadastrando = false;
 
   items: MenuItem[];
 
-  constructor(private eventoService: EventoService) {
+  constructor(private eventService: EventService) {
   }
 
   ngOnInit(): void {
-    this.eventos = this.eventoService.criaEventos();
+    this.events = new Array(this.eventService.createEmptyEvent());
     this.items = [{
       label: 'Eventos',
       items: [

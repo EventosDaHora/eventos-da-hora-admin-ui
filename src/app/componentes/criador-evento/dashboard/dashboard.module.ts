@@ -15,7 +15,7 @@ import {DashboardHomeComponent} from './dashboard-home/dashboard-home.component'
 import {CardAnalyticsComponent} from './card-analytics/card-analytics.component';
 import {CalendarioEventosComponent} from './calendario-eventos/calendario-eventos.component';
 import {TotalizacaoComponent} from './totalizacao/totalizacao.component';
-import { DescricaoEventoComponent } from './descricao-evento/descricao-evento.component';
+import {DescricaoEventoComponent} from './descricao-evento/descricao-evento.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -35,7 +35,6 @@ FullCalendarModule.registerPlugins([
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    SidebarModule,
     MenubarModule,
     InputTextModule,
     ButtonModule,
@@ -43,7 +42,8 @@ FullCalendarModule.registerPlugins([
     CrudEventoModule,
     ProgressBarModule,
     ChartModule,
-    FullCalendarModule
+    FullCalendarModule,
+    SidebarModule
   ],
   exports: [RouterModule]
 })

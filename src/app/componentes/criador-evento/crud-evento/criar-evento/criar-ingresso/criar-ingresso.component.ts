@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Evento} from '../../../../../dominio/Evento';
+import {Section} from "../../../../../dominio/Section";
+import {EventDTO, SectionDTO} from "../../../../../dominio/Event";
 
 @Component({
   selector: 'app-criar-ingresso',
@@ -8,7 +9,7 @@ import {Evento} from '../../../../../dominio/Evento';
 })
 export class CriarIngressoComponent implements OnInit {
 
-  @Input() evento: Evento;
+  @Input() event: EventDTO;
 
   nome: string;
 
@@ -16,18 +17,24 @@ export class CriarIngressoComponent implements OnInit {
   }
 
   addSection(nome: string) {
+
     if (this.nome && !this.contains(nome)) {
-      this.evento.sessoes.push({name : nome, description: "", ammount: undefined, quantity: undefined});
+      let section: SectionDTO = {
+        ammount: undefined, description: "", name: nome, qtdTickets: undefined
+
+      }
+    this.event.sections.push(section)
+
       this.nome = "";
     }
   }
 
   removeSection(i: number) {
-    this.evento.sessoes.splice(i, 1);
+    this.event.sections.splice(i, 1);
   }
 
   contains(nome: string): boolean {
-    return this.evento.sessoes
+    return this.event.sections
         .map(sessao => sessao.name.toLocaleLowerCase())
         .includes(nome.toLocaleLowerCase());
   }

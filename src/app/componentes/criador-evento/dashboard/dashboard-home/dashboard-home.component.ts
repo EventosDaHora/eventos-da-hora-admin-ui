@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {EventoService} from '../../../../services/evento/evento.service';
-import {Evento} from '../../../../dominio/Evento';
+import {Component, OnInit} from '@angular/core';
 import {TipoGrafico} from '../../util/dominio/enums/TipoGrafico';
+import {EventDTO} from "../../../../dominio/Event";
+import {EventService} from "../../../../services/event/event.service";
 
 @Component({
   selector: 'app-dashboard-home',
@@ -10,16 +10,16 @@ import {TipoGrafico} from '../../util/dominio/enums/TipoGrafico';
 })
 export class DashboardHomeComponent implements OnInit {
 
-  eventos: Evento[];
+  events: EventDTO[];
 
   graficoLinha = TipoGrafico.LINHA;
   graficoProgresso = TipoGrafico.PROGRESSO;
   graficoDoughnut = TipoGrafico.DOUGHNUT;
 
-  constructor(private eventoService: EventoService) { }
+  constructor(private eventService: EventService) { }
 
   ngOnInit(): void {
-    this.eventos = this.eventoService.criaEventos();
+    this.events = new Array(this.eventService.createEmptyEvent());
   }
 
 }

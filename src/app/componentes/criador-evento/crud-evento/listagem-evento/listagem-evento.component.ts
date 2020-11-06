@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Evento} from '../../../../dominio/Evento';
-import {EventoService} from '../../../../services/evento/evento.service';
+import {EventDTO} from "../../../../dominio/Event";
+import {EventService} from "../../../../services/event/event.service";
 
 @Component({
   selector: 'app-listagem-evento',
@@ -10,14 +10,14 @@ import {EventoService} from '../../../../services/evento/evento.service';
 export class ListagemEventoComponent implements OnInit {
 
   @Input()
-  eventos: Evento[];
+  events: EventDTO[];
 
-  constructor(private eventoService: EventoService) {
+  constructor(private eventService: EventService) {
   }
 
   ngOnInit(): void {
-    if (!this.eventos) {
-      this.eventos = this.eventoService.criaEventos();
+    if (!this.events) {
+      this.eventService.getAll().subscribe(events => this.events = events)
     }
   }
 }

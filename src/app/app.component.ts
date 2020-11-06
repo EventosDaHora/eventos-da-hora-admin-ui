@@ -1,6 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {Evento} from './dominio/Evento';
 import {Router} from '@angular/router';
+import {EventDTO} from "./dominio/Event";
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   constructor(private router: Router) {
   }
 
-  evento: Evento;
+  evento: EventDTO;
   colorido = false;
 
   @HostListener('window:scroll', ['$event'])

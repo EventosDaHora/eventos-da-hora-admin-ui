@@ -6,7 +6,7 @@ import {CriarEventoComponent} from './criar-evento/criar-evento.component';
 import {CrudEventoComponent} from './crud-evento.component';
 import {CardModule} from 'primeng/card';
 import {
-    ButtonModule,
+    ButtonModule, CalendarModule,
     CheckboxModule,
     MenuModule,
     RadioButtonModule,
@@ -21,12 +21,11 @@ import {CriarIngressoComponent} from './criar-evento/criar-ingresso/criar-ingres
 import {AccordionModule} from 'primeng/accordion';
 import {MapaAmbienteComponent} from './criar-evento/mapa-ambiente/mapa-ambiente.component';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
-import {EventoComponent} from '../../cliente-final/negocio/checkout/evento/main/evento.component';
-import {CardEventoComponent} from '../../cliente-final/view/card-evento/card-evento.component';
 import {MapaLocalComponent} from './criar-evento/mapa-local/mapa-local.component';
 import {ImagemEventoComponent} from './criar-evento/imagem-evento/imagem-evento.component';
 import {PanelModule} from 'primeng/panel';
 import {FieldsetModule} from 'primeng/fieldset';
+import {NgSelectModule} from "@ng-select/ng-select";
 
 @NgModule({
     declarations: [
@@ -58,10 +57,9 @@ import {FieldsetModule} from 'primeng/fieldset';
         DynamicDialogModule,
         PanelModule,
         CheckboxModule,
-        FieldsetModule
-    ],
-  entryComponents: [
-    EventoComponent, CardEventoComponent
-  ]
+        FieldsetModule,
+        CalendarModule,
+        NgSelectModule
+    ]
 })
 export class CrudEventoModule { }
