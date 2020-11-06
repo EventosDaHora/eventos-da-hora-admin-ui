@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {MessageService} from 'primeng';
 import {AbstractControleValueAccessor} from '../AbstractControleValueAccessor';
 
@@ -8,13 +8,16 @@ import {AbstractControleValueAccessor} from '../AbstractControleValueAccessor';
   styleUrls: ['./upload.component.scss'],
   providers: [MessageService]
 })
-export class UploadComponent extends AbstractControleValueAccessor implements OnInit {
+export class UploadComponent extends AbstractControleValueAccessor {
 
   @Input()
   label ?: string;
 
+  @Input()
+  imageMetadata: ImageMetadata;
+
   @Output()
-  imagemOutput = new EventEmitter();
+  imagemOutput = new EventEmitter<ImageMetadata>();
 
   imgURL: any;
 
@@ -38,12 +41,14 @@ export class UploadComponent extends AbstractControleValueAccessor implements On
 
       reader.onload = (evt) => {
         this.imgURL = reader.result;
-        this.imagemOutput.emit(this.imgURL);
+        this.imagemOutput.emit({file: files[0], imgUrl: this.imgURL});
       };
     }
   }
 
-  ngOnInit(): void {
-  }
+}
 
+export interface ImageMetadata {
+  file: File;
+  imgUrl: any;
 }

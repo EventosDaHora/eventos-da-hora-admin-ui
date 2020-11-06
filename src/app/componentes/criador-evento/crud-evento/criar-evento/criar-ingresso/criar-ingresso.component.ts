@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Section} from "../../../../../dominio/Section";
 import {EventDTO, SectionDTO} from "../../../../../dominio/Event";
 
 @Component({

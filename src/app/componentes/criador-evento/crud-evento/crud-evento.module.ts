@@ -7,10 +7,10 @@ import {CrudEventoComponent} from './crud-evento.component';
 import {CardModule} from 'primeng/card';
 import {
     ButtonModule, CalendarModule,
-    CheckboxModule,
-    MenuModule,
+    CheckboxModule, FileUploadModule,
+    MenuModule, MessageService,
     RadioButtonModule,
-    SplitButtonModule,
+    SplitButtonModule, ToastModule,
     ToggleButtonModule
 } from 'primeng';
 import {CrudEventoRoutingModule} from './crud-evento-routing.module';
@@ -29,13 +29,13 @@ import {NgSelectModule} from "@ng-select/ng-select";
 
 @NgModule({
     declarations: [
-      ListagemEventoComponent,
-      CriarEventoComponent,
-      CrudEventoComponent,
-      CriarIngressoComponent,
-      MapaAmbienteComponent,
-      MapaLocalComponent,
-      ImagemEventoComponent
+        ListagemEventoComponent,
+        CriarEventoComponent,
+        CrudEventoComponent,
+        CriarIngressoComponent,
+        MapaAmbienteComponent,
+        MapaLocalComponent,
+        ImagemEventoComponent
     ],
     exports: [
         ListagemEventoComponent
@@ -59,7 +59,11 @@ import {NgSelectModule} from "@ng-select/ng-select";
         CheckboxModule,
         FieldsetModule,
         CalendarModule,
-        NgSelectModule
-    ]
+        NgSelectModule,
+        FileUploadModule,
+        ToastModule
+    ],
+    providers: [MessageService]
 })
-export class CrudEventoModule { }
+export class CrudEventoModule {
+}

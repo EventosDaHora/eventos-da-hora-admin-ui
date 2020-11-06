@@ -1,4 +1,4 @@
-<form class="p-fluid p-formgrid p-grid" (submit)="submit()">
+<form class="p-fluid p-formgrid p-grid" #form="ngForm">
   <div class="p-col-12 p-md-12 p-lg-12">
     <h1>Criar Evento</h1>
     <hr>
@@ -120,11 +120,11 @@
 
   <div class="p-col-12 p-md-12 p-lg-12">
     <hr>
-    <h2>Imagens</h2>
+    <h2>Imagem</h2>
   </div>
 
   <div class="p-col-12 p-md-12 p-lg-12">
-    <app-imagem-evento></app-imagem-evento>
+    <app-imagem-evento (imagemOutput)="addImagem($event)"></app-imagem-evento>
   </div>
 
   <div class="p-col-12 p-md-12 p-lg-12">
@@ -132,16 +132,21 @@
     <div class="criar-evento">
     <br>
       <p-checkbox label="Concordo com os termos de uso"
-                  name="concordar">
+                  name="concordar"
+                  binary="true"
+                  [(ngModel)]="termoAceito">
       </p-checkbox>
       <br><br>
-      <button type = "submit"
+      <button type="button"
               label="Criar evento"
               pButton
+              (click)="submit(form)"
               class="ui-button-primary largura-total">
       </button>
     </div>
 
   </div>
 </form>
+
+<p-toast position="bottom-center"></p-toast>
 

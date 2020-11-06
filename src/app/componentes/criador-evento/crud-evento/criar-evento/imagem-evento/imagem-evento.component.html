@@ -1,15 +1,13 @@
-  <p-panel header="Adicionar Imagens" [collapsed]="false" [toggleable]="false">
+  <p-panel header="Adicionar Imagem" [collapsed]="false" [toggleable]="false">
     <img [src]="imgSRC" *ngIf="imgSRC" class="imagem">
     <p-footer>
         <ng-template [ngIf]="!imgSRC">
-          <app-upload label="Procurar Imagens" (imagemOutput)="mostrarImagem($event)"></app-upload>
+          <app-upload label="Procurar Imagem" (imagemOutput)="carregaImagem($event)"></app-upload>
         </ng-template>
 
         <ng-template [ngIf]="imgSRC">
           <div class="footer">
-            <button pButton label="Configurar modo mobile" class="ui-button-primary"></button>
-            <app-upload label="Procurar Imagens" (imagemOutput)="mostrarImagem($event)"></app-upload>
-            <button pButton label="Configurar modo tablet" class="ui-button-primary"></button>
+            <app-upload label="Escolher outra imagem" (imagemOutput)="carregaImagem($event)"></app-upload>
           </div>
         </ng-template>
 
