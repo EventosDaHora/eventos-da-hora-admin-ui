@@ -12,6 +12,9 @@ export class ImagemEventoComponent {
 
   imgSRC: any;
 
+  @Input()
+  submitted = false;
+
   @Output()
   imagemOutput = new EventEmitter<ImageMetadata>();
 

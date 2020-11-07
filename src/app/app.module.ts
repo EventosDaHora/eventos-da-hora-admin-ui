@@ -7,8 +7,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {InfraModule} from './infra/infra.module';
 import {SidebarModule} from 'primeng/sidebar';
 import {ToastrModule} from "ngx-toastr";
-import {JwtModule} from "@auth0/angular-jwt";
-import {environment} from "../environments/environment";
 import {HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import {DashboardRoutingModule} from "./componentes/criador-evento/dashboard/dashboard-routing.module";
@@ -44,15 +42,7 @@ import {FullCalendarModule} from "@fullcalendar/angular";
       preventDuplicates: true,
     }),
 
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: () => {
-          return localStorage.getItem('token');
-        },
-        allowedDomains: [environment.apiWhitelisted],
-        disallowedRoutes: [`${environment.apiUrl}/login`]
-      }
-    })
+
   ],
   providers: [],
   bootstrap: [AppComponent]

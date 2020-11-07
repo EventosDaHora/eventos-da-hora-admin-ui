@@ -1,5 +1,5 @@
   <p-panel header="Adicionar Imagem" [collapsed]="false" [toggleable]="false">
-    <img [src]="imgSRC" *ngIf="imgSRC" class="imagem">
+    <img [src]="imgSRC" *ngIf="imgSRC && !submitted" class="imagem">
     <p-footer>
         <ng-template [ngIf]="!imgSRC">
           <app-upload label="Procurar Imagem" (imagemOutput)="carregaImagem($event)"></app-upload>

@@ -6,11 +6,15 @@ import {CriarEventoComponent} from './criar-evento/criar-evento.component';
 import {CrudEventoComponent} from './crud-evento.component';
 import {CardModule} from 'primeng/card';
 import {
-    ButtonModule, CalendarModule,
-    CheckboxModule, FileUploadModule,
-    MenuModule, MessageService,
+    ButtonModule,
+    CalendarModule,
+    CheckboxModule, ConfirmationService, ConfirmDialogModule,
+    FileUploadModule,
+    MenuModule,
+    MessageService,
     RadioButtonModule,
-    SplitButtonModule, ToastModule,
+    SplitButtonModule,
+    ToastModule,
     ToggleButtonModule
 } from 'primeng';
 import {CrudEventoRoutingModule} from './crud-evento-routing.module';
@@ -19,9 +23,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {CriarIngressoComponent} from './criar-evento/criar-ingresso/criar-ingresso.component';
 import {AccordionModule} from 'primeng/accordion';
-import {MapaAmbienteComponent} from './criar-evento/mapa-ambiente/mapa-ambiente.component';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
-import {MapaLocalComponent} from './criar-evento/mapa-local/mapa-local.component';
 import {ImagemEventoComponent} from './criar-evento/imagem-evento/imagem-evento.component';
 import {PanelModule} from 'primeng/panel';
 import {FieldsetModule} from 'primeng/fieldset';
@@ -33,8 +35,6 @@ import {NgSelectModule} from "@ng-select/ng-select";
         CriarEventoComponent,
         CrudEventoComponent,
         CriarIngressoComponent,
-        MapaAmbienteComponent,
-        MapaLocalComponent,
         ImagemEventoComponent
     ],
     exports: [
@@ -61,9 +61,9 @@ import {NgSelectModule} from "@ng-select/ng-select";
         CalendarModule,
         NgSelectModule,
         FileUploadModule,
-        ToastModule
-    ],
-    providers: [MessageService]
+        ToastModule,
+        ConfirmDialogModule
+    ]
 })
 export class CrudEventoModule {
 }

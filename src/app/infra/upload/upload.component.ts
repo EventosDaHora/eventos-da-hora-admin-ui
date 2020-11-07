@@ -27,21 +27,23 @@ export class UploadComponent extends AbstractControleValueAccessor {
     super();
   }
 
-  onUpload(files) {
-    if (files.length > 0) {
-      const mimeType = files[0].type;
+  onUpload(file) {
+    if (file.files.length > 0) {
+      const mimeType = file. files[0].type;
 
       if (mimeType.match(/image\/*/) == null) {
         return;
       }
 
       const reader = new FileReader();
-      this.imagePath = files;
-      reader.readAsDataURL(files[0]);
+      this.imagePath = file.files;
+      reader.readAsDataURL(file.files[0]);
 
       reader.onload = (evt) => {
         this.imgURL = reader.result;
-        this.imagemOutput.emit({file: files[0], imgUrl: this.imgURL});
+        this.imagemOutput.emit({file: file.files[0], imgUrl: this.imgURL});
+        this.imgURL = undefined;
+        file = undefined;
       };
     }
   }

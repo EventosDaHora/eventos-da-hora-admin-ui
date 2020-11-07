@@ -1,17 +1,12 @@
 import {ControlValueAccessor} from '@angular/forms';
-import { Input, Directive } from '@angular/core';
 
 export class AbstractControleValueAccessor implements ControlValueAccessor {
 
   val: any;
 
-  onChange: any = val => {
-    console.log(val);
-  };
+  onChange: any = val => {};
 
-  onTouched: any = val => {
-    console.log(val);
-  };
+  onTouched: any = val => {};
 
   writeValue(value: any) {
     this.val = value;

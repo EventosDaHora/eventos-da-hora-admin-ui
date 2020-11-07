@@ -1,151 +1,157 @@
-<form class="p-fluid p-formgrid p-grid" #form="ngForm">
-  <div class="p-col-12 p-md-12 p-lg-12">
-    <h1>Criar Evento</h1>
-    <hr>
-  </div>
-
-  <div class="p-col-12 p-md-12 p-lg-12">
-    <h2>Informações gerais</h2>
-  </div>
-
-  <div class="p-field p-col-12 p-md-6">
-    <app-input-texto id="tituloEvento"
-                     label="Titulo"
-                     tipo="text"
-                     required="true"
-                     [(ngModel)]="event.name"
-                     name="tituloEvento">
-    </app-input-texto>
-  </div>
-
-  <div class="p-field p-col-12 p-md-6">
-    <app-input-texto id="descricaoEvento"
-                     label="Descrição"
-                     tipo="text"
-                     required="true"
-                     [(ngModel)]="event.description"
-                     name="descricaoEvento">
-    </app-input-texto>
-  </div>
-
-  <div class="pp-field p-col-12 p-md-6">
-    <ng-select [items]="categories"
-               bindLabel="name"
-               bindValue="id"
-               [(ngModel)]="idCategory"
-               name="categoria"
-               placeholder="Categoria"
-               clearable="false"
-               searchable="false"
-               id="categoria"
-               class="custom">
-    </ng-select>
-  </div>
-
-  <div class="p-field p-col-12 p-md-6">
-    <div class="p-formgroup-inline">
-      <div class="p-field">
-        <p-calendar name="calendario"
-                    [(ngModel)]="date"
-                    [inline]=false
-                    [showTime]=false
-                    [timeOnly]=false
-                    dateFormat="dd/mm/yy"
-                    style="width: 100%"
-                    id="data">
-        </p-calendar>
-      </div>
-
-      <div class="p-field">
-        <p-calendar name="calendario"
-                    [(ngModel)]="hora"
-                    [inline]=false
-                    [showTime]=false
-                    [timeOnly]=true
-                    style="width: 100%"
-                    id="hora">
-        </p-calendar>
-      </div>
-    </div>
-  </div>
-
-  <div class="p-col-12 p-md-12 p-lg-12">
-    <hr>
-    <h2>Seções/Ingressos</h2>
-  </div>
-
-  <div class="p-col-12 p-md-12 p-lg-12">
-    <app-criar-ingresso [event]="event"></app-criar-ingresso>
-  </div>
-
-  <div class="p-col-12 p-md-12 p-lg-12">
-    <hr>
-    <h2>Local</h2>
-  </div>
-
-  <div class="p-col-12 p-md-6 p-lg-6">
-    <app-input-texto id="pais"
-                        label="País"
-                        [(ngModel)]="event.localization.country"
-                        name="pais"
-                        required="true">
-    </app-input-texto>
-  </div>
-
-  <div class="p-col-12 p-md-6 p-lg-6">
-    <app-input-texto id="cidade"
-                     label="Cidade"
-                     [(ngModel)]="event.localization.city"
-                     name="cidade"
-                     required="true">
-    </app-input-texto>
-  </div>
-
-  <div class="p-col-12 p-md-6 p-lg-6">
-    <app-input-texto id="endereco"
-                     label="Endereço"
-                     [(ngModel)]="event.localization.address"
-                     name="endereco"
-                     required="true">
-    </app-input-texto>
-  </div>
-
-  <div class="p-col-12 p-md-6 p-lg-6">
-    <app-input-texto id="complemento"
-                     [(ngModel)]="event.localization.complement"
-                     name="complement"
-                     label="Complemento">
-    </app-input-texto>
-  </div>
-
-  <div class="p-col-12 p-md-12 p-lg-12">
-    <hr>
-    <h2>Imagem</h2>
-  </div>
-
-  <div class="p-col-12 p-md-12 p-lg-12">
-    <app-imagem-evento (imagemOutput)="addImagem($event)"></app-imagem-evento>
-  </div>
-
-  <div class="p-col-12 p-md-12 p-lg-12">
-    <hr>
-    <div class="criar-evento">
-    <br>
-      <p-checkbox label="Concordo com os termos de uso"
-                  name="concordar"
-                  binary="true"
-                  [(ngModel)]="termoAceito">
-      </p-checkbox>
-      <br><br>
-      <button type="button"
-              label="Criar evento"
-              pButton
-              (click)="submit(form)"
-              class="ui-button-primary largura-total">
-      </button>
+<form class="p-grid" #form="ngForm">
+    <div class="p-col-12 p-md-12 p-lg-12">
+        <h1>Criar Evento</h1>
+        <hr>
     </div>
 
-  </div>
+    <div class="p-col-12 p-md-12 p-lg-12">
+        <h2>Informações gerais</h2>
+    </div>
+
+    <div class="p-col-12 p-md-6 p-lg-6">
+        <app-input-texto id="tituloEvento"
+                         label="Titulo"
+                         tipo="text"
+                         required="true"
+                         [(ngModel)]="event.name"
+                         name="tituloEvento">
+        </app-input-texto>
+    </div>
+
+    <div class="p-col-12 p-md-6 p-lg-6">
+        <app-input-texto id="descricaoEvento"
+                         label="Descrição"
+                         tipo="text"
+                         required="true"
+                         [(ngModel)]="event.description"
+                         name="descricaoEvento">
+        </app-input-texto>
+    </div>
+
+    <div class="p-col-12 p-md-6 p-lg-6">
+        <ng-select [items]="categories"
+                   bindLabel="name"
+                   bindValue="id"
+                   [(ngModel)]="idCategory"
+                   name="categoria"
+                   placeholder="Categoria"
+                   id="categoria"
+                   class="custom">
+        </ng-select>
+    </div>
+
+    <div class="p-field p-col-12 p-md-6">
+        <div class="p-grid">
+            <div class="p-col-12 p-md-6 p-lg-6">
+                <app-input-calendar name="date"
+                                    [(ngModel)]="date"
+                                    [inline]="false"
+                                    [horaEdata]="false"
+                                    [somenteHorario]="false"
+                                    style="width: 100%"
+                                    id="data">
+                </app-input-calendar>
+            </div>
+
+            <div class="p-col-12 p-md-6 p-lg-6">
+                <app-input-calendar name="hora"
+                                    [(ngModel)]="hora"
+                                    [inline]="false"
+                                    [horaEdata]="false"
+                                    [somenteHorario]="true"
+                                    style="width: 100%"
+                                    id="hora">
+                </app-input-calendar>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-12 p-lg-12">
+        <hr>
+        <h2>Seções/Ingressos</h2>
+    </div>
+
+    <div class="p-col-12 p-md-12 p-lg-12">
+        <app-criar-ingresso [event]="event"></app-criar-ingresso>
+    </div>
+
+    <div class="p-col-12 p-md-12 p-lg-12">
+        <hr>
+        <h2>Local</h2>
+    </div>
+
+    <div class="p-col-12 p-md-6 p-lg-6">
+        <app-input-texto id="pais"
+                         label="País"
+                         [(ngModel)]="event.localization.country"
+                         name="pais"
+                         required="true">
+        </app-input-texto>
+    </div>
+
+    <div class="p-col-12 p-md-6 p-lg-6">
+        <app-input-texto id="cidade"
+                         label="Cidade"
+                         [(ngModel)]="event.localization.city"
+                         name="cidade"
+                         required="true">
+        </app-input-texto>
+    </div>
+
+    <div class="p-col-12 p-md-6 p-lg-6">
+        <app-input-texto id="endereco"
+                         label="Endereço"
+                         [(ngModel)]="event.localization.address"
+                         name="endereco"
+                         required="true">
+        </app-input-texto>
+    </div>
+
+    <div class="p-col-12 p-md-6 p-lg-6">
+        <app-input-texto id="complemento"
+                         [(ngModel)]="event.localization.complement"
+                         name="complement"
+                         label="Complemento">
+        </app-input-texto>
+    </div>
+
+    <div class="p-col-12 p-md-12 p-lg-12">
+        <hr>
+        <h2>Imagem</h2>
+    </div>
+
+    <div class="p-col-12 p-md-12 p-lg-12">
+        <app-imagem-evento (imagemOutput)="addImagem($event)"
+                           [submitted]="submitted">
+        </app-imagem-evento>
+    </div>
+
+    <div class="p-col-12 p-md-12 p-lg-12">
+        <hr>
+        <div class="criar-evento">
+            <br>
+            <p-checkbox label="Concordo com os termos de uso"
+                        name="concordar"
+                        binary="true"
+                        [(ngModel)]="termoAceito">
+            </p-checkbox>
+            <br><br>
+            <button type="button"
+                    label="Criar evento"
+                    pButton
+                    (click)="submit(form)"
+                    class="ui-button-primary largura-total">
+            </button>
+            <p-confirmDialog #cd header="Confirmação" icon="pi pi-question-circle">
+                <p-footer>
+                    <button type="button" pButton icon="pi pi-times" label="Não" (click)="cd.reject()"></button>
+                    <button type="button" pButton icon="pi pi-check" label="Sim" (click)="cd.accept()"></button>
+                </p-footer>
+            </p-confirmDialog>
+
+        </div>
+
+    </div>
 </form>
 
 <p-toast position="bottom-center"></p-toast>
