@@ -1,17 +1,13 @@
-  <p-panel header="Adicionar Imagem" [collapsed]="false" [toggleable]="false">
-    <img [src]="imgSRC" *ngIf="imgSRC && !submitted" class="imagem">
-    <p-footer>
-        <ng-template [ngIf]="!imgSRC">
-          <app-upload label="Procurar Imagem" (imagemOutput)="carregaImagem($event)"></app-upload>
-        </ng-template>
+<img [src]="imgSRC" *ngIf="imgSRC && !submitted" class="imagem">
+<ng-template [ngIf]="!imgSRC">
+    <app-upload label="Procurar Imagem" (imagemOutput)="carregaImagem($event)"></app-upload>
+</ng-template>
 
-        <ng-template [ngIf]="imgSRC">
-          <div class="footer">
-            <app-upload label="Escolher outra imagem" (imagemOutput)="carregaImagem($event)"></app-upload>
-          </div>
-        </ng-template>
+<ng-template [ngIf]="imgSRC">
+    <div class="footer">
+        <app-upload label="Escolher outra imagem" (imagemOutput)="carregaImagem($event)"></app-upload>
+    </div>
+</ng-template>
 
-    </p-footer>
-  </p-panel>
 
 

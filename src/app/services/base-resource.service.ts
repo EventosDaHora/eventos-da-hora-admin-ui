@@ -20,7 +20,7 @@ export abstract class BaseResourceService {
     );
   }
 
-  getById(id: number): Observable<any> {
+  getById(id: any): Observable<any> {
     const url = `${this.apiPath}/${id}`;
 
     return this.http.get(url).pipe(

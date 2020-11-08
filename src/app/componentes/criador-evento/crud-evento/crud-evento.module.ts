@@ -8,14 +8,18 @@ import {CardModule} from 'primeng/card';
 import {
     ButtonModule,
     CalendarModule,
-    CheckboxModule, ConfirmationService, ConfirmDialogModule,
+    CheckboxModule,
+    ConfirmDialogModule,
+    DialogModule,
     FileUploadModule,
+    InputNumberModule,
     MenuModule,
-    MessageService,
     RadioButtonModule,
+    RatingModule,
     SplitButtonModule,
     ToastModule,
-    ToggleButtonModule
+    ToggleButtonModule,
+    ToolbarModule
 } from 'primeng';
 import {CrudEventoRoutingModule} from './crud-evento-routing.module';
 import {InfraModule} from '../../../infra/infra.module';
@@ -62,7 +66,12 @@ import {NgSelectModule} from "@ng-select/ng-select";
         NgSelectModule,
         FileUploadModule,
         ToastModule,
-        ConfirmDialogModule
+        ConfirmDialogModule,
+        InputNumberModule,
+        ToolbarModule,
+        RatingModule,
+        DialogModule,
+
     ]
 })
 export class CrudEventoModule {
