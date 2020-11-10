@@ -1,54 +1,48 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {EventDTO, ImageEventDTO} from "../../../../dominio/Event";
+import {EventDTO} from "../../../../dominio/Event";
 import {EventService} from "../../../../services/event/event.service";
 import {ConfirmationService, MessageService, Table} from "primeng";
 import {ImageService} from "../../../../services/image/image.service";
-import {filter, mergeMap} from "rxjs/operators";
-import {from} from "rxjs";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
-  selector: 'app-listagem-evento',
-  templateUrl: './listagem-evento.component.html',
-  styleUrls: ['./listagem-evento.component.scss'],
-  providers: [MessageService, ConfirmationService]
+    selector: 'app-listagem-evento',
+    templateUrl: './listagem-evento.component.html',
+    styleUrls: ['./listagem-evento.component.scss'],
+    providers: [MessageService, ConfirmationService]
 })
 export class ListagemEventoComponent implements OnInit {
 
-  events: EventDTO[];
+    apiImageURL = `${environment.apiUrl}/eventos-da-hora-image-api`;
 
-  selectedEvent: EventDTO;
+    events: EventDTO[];
 
-  eventDialog: boolean;
+    selectedEvent: EventDTO;
 
-  imgsSRC: string[];
+    eventDialog: boolean;
 
-  @ViewChild('dt') table: Table;
+    images: string[];
 
-  constructor(private eventService: EventService,
-              private imageService: ImageService) {
-  }
+    @ViewChild('dt') table: Table;
 
-  ngOnInit(): void {
-    if (!this.events) {
-      this.eventService.getAll().subscribe(events => this.events = events);
-      this.getImages();
+    constructor(private eventService: EventService,
+                private imageService: ImageService) {
     }
-  }
 
-  getImages() {
-    return this.imageService.getAll()
-        .pipe(
-            mergeMap(uuids => {
-              console.log(uuids);
-              return from(uuids);
-            }),
-            mergeMap(uuid => this.imageService.getById(uuid))
-        ).subscribe(result => {
-          this.imgsSRC = result;
-          console.log(this.imgsSRC);
-        })
-  }
+    ngOnInit(): void {
+        this.eventService.getAll().subscribe(events => {
+            this.events = events
+        });
 
+        this.imageService.getAll().subscribe(result => this.images = result)
+    }
+
+    getImage(event: EventDTO) {
+        const image = event.images.filter(img => img.imageType === 'THUMBNAIL')
+            .find(img => this.images.includes(img.imageId))
+
+        return `${this.apiImageURL}/images/${image.imageId}`;
+    }
 
 
 }
