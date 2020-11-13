@@ -25,21 +25,17 @@ export class ListagemEventoComponent implements OnInit {
 
     @ViewChild('dt') table: Table;
 
-    constructor(private eventService: EventService,
-                private imageService: ImageService) {
+    constructor(private eventService: EventService) {
     }
 
     ngOnInit(): void {
         this.eventService.getAll().subscribe(events => {
             this.events = events
         });
-
-        this.imageService.getAll().subscribe(result => this.images = result)
     }
 
     getImage(event: EventDTO) {
-        const image = event.images.filter(img => img.imageType === 'THUMBNAIL')
-            .find(img => this.images.includes(img.imageId))
+        const image = event.images.find(img => img.imageType === 'THUMBNAIL')
 
         return `${this.apiImageURL}/images/${image.imageId}`;
     }

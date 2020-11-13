@@ -1,6 +1,6 @@
 import {Injectable, Injector} from '@angular/core';
 import {BaseResourceService} from "../base-resource.service";
-import {HttpClient, HttpEvent, HttpRequest} from "@angular/common/http";
+import {HttpClient, HttpEvent, HttpHeaders, HttpRequest} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
 import {catchError} from "rxjs/operators";

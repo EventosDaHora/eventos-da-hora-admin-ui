@@ -14,7 +14,9 @@
                  [showCurrentPageReport]="true">
             <ng-template pTemplate="caption">
                 <h2 class="p-m-0">Gerenciar eventos</h2>
-                <app-input-texto placeholder="Procurar" name="procurar"></app-input-texto>
+                <div class="p-d-flex p-ai-center p-jc-between">
+                    <app-input-texto placeholder="Procurar" name="procurar"></app-input-texto>
+                </div>
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
@@ -58,21 +60,21 @@
                                 </ng-template>
                                 <ng-template pTemplate="header">
                 <tr>
-                    <th pSortableColumn="id">Id <p-sortIcon field="price"></p-sortIcon></th>
-                    <th pSortableColumn="customer">Customer <p-sortIcon field="customer"></p-sortIcon></th>
-                    <th pSortableColumn="date">Date <p-sortIcon field="date"></p-sortIcon></th>
-                    <th pSortableColumn="amount">Amount <p-sortIcon field="amount"></p-sortIcon></th>
-                    <th pSortableColumn="stats">Status <p-sortIcon field="status"></p-sortIcon></th>
+                    <th pSortableColumn="name">Nome<p-sortIcon field="price"></p-sortIcon></th>
+                    <th pSortableColumn="description">Descrição<p-sortIcon field="customer"></p-sortIcon></th>
+                    <th pSortableColumn="ammount">Preço<p-sortIcon field="date"></p-sortIcon></th>
+                    <th pSortableColumn="qtdTickets">Quantidade inicial<p-sortIcon field="amount"></p-sortIcon></th>
+                    <th pSortableColumn="stats">Vendidos<p-sortIcon field="status"></p-sortIcon></th>
                     <th style="width: 4rem"></th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-section>
                 <tr>
-                    <td>asdfsadfasdf</td>
-                    <td>asdfsadfasdf</td>
-                    <td>asdfsadfasdf</td>
-                    <td>asdfsadfasdf</td>
-                    <td>asdfsadfasdf</td>
+                    <td>{{section.name}}</td>
+                    <td>{{section.description}}</td>
+                    <td>{{section.ammount}}</td>
+                    <td>{{section.qtdTickets}}</td>
+                    <td>{{section.qtdTickets}}</td>
                     <td><p-button type="button" icon="pi pi-search"></p-button></td>
                 </tr>
             </ng-template>
