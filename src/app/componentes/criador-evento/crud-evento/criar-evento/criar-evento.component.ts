@@ -67,9 +67,12 @@ export class CriarEventoComponent implements OnInit, OnDestroy {
         this.montaDataHora();
         this.getIdCategoria();
         this.event.localization.cep = "123456";
+        console.log(this.imageMetadata.file);
         this.imageService.upload(this.imageMetadata.file).subscribe(response => {
 
-            this.event.images.push({imageId: undefined, imageType: this.imageMetadata.file.type});
+            this.event.images.push({imageId: response.idImage, imageType: 'BANNER'});
+            this.event.images.push({imageId: response.idImage, imageType: 'THUMBNAIL'});
+
             this.eventService.create(this.event).subscribe(response => {
                 if (response) {
                     this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Evento criado com sucesso!'});
