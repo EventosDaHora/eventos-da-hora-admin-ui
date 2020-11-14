@@ -10,7 +10,7 @@ import {HttpClient} from "@angular/common/http";
 export class EventService extends BaseResourceService {
 
     constructor(injector: Injector, http: HttpClient) {
-        super(`${environment.apiUrl}/eventos-da-hora-event-api/events`, injector, null);
+        super(`${environment.apiUrl}/eventos-da-hora-event-api/events`, injector);
     }
 
     createEmptyEvent(): EventDTO {

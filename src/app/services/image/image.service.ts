@@ -15,7 +15,7 @@ export class ImageService extends BaseResourceService{
   fileInput: FormData;
 
   constructor(injector: Injector, http: HttpClient) {
-    super(`${environment.apiUrl}/eventos-da-hora-image-api/images`, injector, ImageFile.fromJson);
+    super(`${environment.apiUrl}/eventos-da-hora-image-api/images`, injector);
     this.fileInput = new FormData();
   }
 

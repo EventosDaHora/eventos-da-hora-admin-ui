@@ -11,15 +11,12 @@ export abstract class BaseResourceService {
     public http: HttpClient;
 
     constructor(public  apiPath: string,
-                public  injector: Injector,
-                public  jsonDataToResourceFn: (jsonData: any) => any
-    ) {
+                public  injector: Injector) {
         this.http = injector.get(HttpClient);
     }
 
     public getAll(): Observable<any[]> {
         return this.http.get(this.apiPath).pipe(
-            map(this.jsonDataToResources.bind(this)),
             catchError(this.handlerError)
         );
     }
@@ -28,21 +25,18 @@ export abstract class BaseResourceService {
         const url = `${this.apiPath}/${id}`;
 
         return this.http.get(url).pipe(
-            map(this.jsonDataToResource.bind(this)),
             catchError(this.handlerError)
         );
     }
 
     public create(resource: any): Observable<any> {
         return this.http.post(this.apiPath, resource).pipe(
-            map(this.jsonDataToResource.bind(this)),
             catchError(this.handlerError)
         );
     }
 
     public doPost(resource: any, path: string): Observable<any> {
         return this.http.post(this.apiPath + path, resource).pipe(
-            map(this.jsonDataToResource.bind(this)),
             catchError(this.handlerError)
         );
     }
@@ -62,16 +56,6 @@ export abstract class BaseResourceService {
             catchError(this.handlerError),
             map(() => null)
         );
-    }
-
-    public jsonDataToResources(jsonData: any[]): any[] {
-        const resources: any[] = [];
-        jsonData.forEach(element => resources.push(this.jsonDataToResourceFn(element)));
-        return resources;
-    }
-
-    public jsonDataToResource(jsonData: any): any {
-        return this.jsonDataToResourceFn(jsonData);
     }
 
     public handlerError(error: any): Observable<any> {
