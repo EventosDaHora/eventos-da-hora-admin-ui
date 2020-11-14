@@ -1,0 +1,41 @@
+<section class="container">
+    <p-card>
+        <div class="login">
+
+            <form [formGroup]="resourceForm" (submit)="submitForm()" class="p-grid p-justify-center">
+                <div class="p-col-12 p-md-12 p-lg-12">
+                    <div class="titulo">Login</div>
+                </div>
+                <div class="p-col-12 p-md-12 p-lg-12">
+
+        <span class="ui-float-label">
+          <input type="text" class="ui-inputtext" id="username" formControlName="username">
+          <label for="username" *ngIf="!resourceForm.get('username').value">Login</label>
+        </span>
+                    <app-form-field-error [form-control]="resourceForm.get('username')"></app-form-field-error>
+                </div>
+
+                <div class="p-col-12 p-md-12 p-lg-12">
+        <span class="ui-float-label">
+          <input type="password" class="ui-inputtext" id="password" formControlName="password">
+          <label for="password" *ngIf="!resourceForm.get('password').value">Senha</label>
+        </span>
+                    <app-form-field-error [form-control]="resourceForm.get('password')"></app-form-field-error>
+                </div>
+
+                <div class="p-col">
+                    <button [disabled]="resourceForm.invalid" label="Login" pButton class="ui-button-primary"
+                            style="margin: 0 auto; display: block"></button>
+                </div>
+
+                <div class="p-col-12 p-md-12 p-lg-12">
+                    <div style="text-align: center">
+                        <a routerLink="/conta/resetar-senha">Recuperar Senha</a>
+                    </div>
+                    <hr>
+                </div>
+            </form>
+        </div>
+    </p-card>
+
+</section>
