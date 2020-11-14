@@ -67,7 +67,12 @@ export class CriarEventoComponent implements OnInit, OnDestroy {
         this.montaDataHora();
         this.getIdCategoria();
         this.event.localization.cep = "123456";
+        console.log(this.imageMetadata.file);
         this.imageService.upload(this.imageMetadata.file).subscribe(response => {
+
+            this.event.images.push({imageId: response.idImage, imageType: 'BANNER'});
+            this.event.images.push({imageId: response.idImage, imageType: 'THUMBNAIL'});
+
             this.eventService.create(this.event).subscribe(response => {
                 if (response) {
                     this.messageService.add({severity: 'success', summary: 'Sucesso', detail: 'Evento criado com sucesso!'});
@@ -78,6 +83,12 @@ export class CriarEventoComponent implements OnInit, OnDestroy {
                 }
             });
         });
+    }
+
+    addImagem(event: ImageMetadata) {
+        this.imageMetadata = event;
+        this.event.images = [];
+        this.event.images.push({imageId: undefined, imageType: event.file.type});
     }
 
     msgCampoObrigatorio() {
@@ -99,20 +110,6 @@ export class CriarEventoComponent implements OnInit, OnDestroy {
         this.event.date = `${date}T${horas}:${minutos}`;
     }
 
-    addImagem(event: ImageMetadata) {
-        this.imageMetadata = event;
-        const file = event.file;
-        const blob = file.slice(0, file.size, file.type);
-        this.imageMetadata.file = new File([blob], this.uuidv4());
-        this.event.images = [];
-        this.event.images.push({imageId: this.imageMetadata.file.name, imageType: 'THUMBNAIL'});
-    }
 
-    uuidv4() {
-        // @ts-ignore
-        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-        );
-    }
 }
 

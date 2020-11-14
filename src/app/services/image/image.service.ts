@@ -1,9 +1,11 @@
 import {Injectable, Injector} from '@angular/core';
+import {environment} from "../../../environments/environment";
 import {BaseResourceService} from "../base-resource.service";
-import {HttpClient, HttpEvent, HttpHeaders, HttpRequest} from "@angular/common/http";
+import {HttpClient, HttpEvent, HttpRequest} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
-import {catchError} from "rxjs/operators";
+import {ImageFile} from "../../dominio/image-file.model";
+import {catchError, map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +13,20 @@ import {catchError} from "rxjs/operators";
 export class ImageService extends BaseResourceService{
 
   urlImage = `${environment.apiUrl}/eventos-da-hora-image-api/images`;
+  fileInput: FormData;
 
   constructor(injector: Injector, http: HttpClient) {
     super(`${environment.apiUrl}/eventos-da-hora-image-api/images`, http);
+    this.fileInput = new FormData();
   }
 
-  upload(file: File): Observable<HttpEvent<any>> {
-    const formData: FormData = new FormData();
-
-    formData.append('file', file);
+  upload(resourceFile: File): Observable<ImageFile> {
+    this.fileInput.set('file', resourceFile);
+    return this.http.post(this.urlImage,  this.fileInput).pipe(
+        map(a => ImageFile.fromJson(a)),
+        catchError(this.handlerError)
+    );
+  }
 
     const req = new HttpRequest('POST', this.urlImage, formData, {
       reportProgress: true,
