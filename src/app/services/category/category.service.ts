@@ -9,6 +9,6 @@ import {environment} from "../../../environments/environment";
 export class CategoryService extends BaseResourceService {
 
     constructor(injector: Injector, http: HttpClient) {
-        super(`${environment.apiUrl}/eventos-da-hora-event-api/categories`, http);
+        super(`${environment.apiUrl}/eventos-da-hora-event-api/categories`, injector, null);
     }
 }

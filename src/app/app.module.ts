@@ -14,6 +14,10 @@ import {MenubarModule} from "primeng/menubar";
 import {ButtonModule, CardModule, ChartModule, InputTextModule, ProgressBarModule} from "primeng";
 import {CrudEventoModule} from "./componentes/criador-evento/crud-evento/crud-evento.module";
 import {FullCalendarModule} from "@fullcalendar/angular";
+import {JwtModule} from "@auth0/angular-jwt";
+import {environment} from "../environments/environment";
+import {AuthService} from "./infra/security/auth.service";
+import {AuthGuard} from "./infra/security/auth-guard.service";
 
 @NgModule({
   declarations: [
@@ -42,9 +46,20 @@ import {FullCalendarModule} from "@fullcalendar/angular";
       preventDuplicates: true,
     }),
 
-
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('token');
+        },
+        allowedDomains: [environment.apiWhitelisted],
+        disallowedRoutes: [`${environment.apiUrl}/login`]
+      }
+    })
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuard,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

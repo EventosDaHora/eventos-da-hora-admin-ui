@@ -1,0 +1,42 @@
+<section class="container">
+  <p-card>
+    <div class="login">
+      <form class="p-grid" [formGroup]="resourceForm" (submit)="submitForm()">
+        <div class="p-col-12 p-md-12 p-lg-12">
+          <div class="titulo">Recuperar Senha</div>
+          <div style="text-align: center; padding: 5px;">
+            Informe seu endereço de e-mail abaixo, um link para recuperar a senha será enviado
+          </div>
+        </div>
+
+<!--        <div class="p-col-12 p-md-12 p-lg-12">-->
+
+<!--          <span class="ui-float-label">-->
+<!--            <label for="dsEmail" *ngIf="!resourceForm.get('dsEmail').value">Email</label>-->
+<!--            <input type="text" class="ui-inputtext" id="dsEmail" formControlName="dsEmail">-->
+<!--          </span>-->
+<!--          <app-form-field-error [form-control]="resourceForm.get('dsEmail')"></app-form-field-error>-->
+
+<!--        </div>-->
+
+        <div class="p-col">
+
+          <span class="ui-float-label">
+            <input type="text" class="ui-inputtext" id="dsEmail" formControlName="dsEmail">
+            <label for="dsEmail" *ngIf="!resourceForm.get('dsEmail').value">Email</label>
+          </span>
+          <app-form-field-error [form-control]="resourceForm.get('dsEmail')"></app-form-field-error>
+
+        </div>
+
+        <div class="p-col-12 p-md-12 p-lg-12">
+          <button pButton label="Enviar e-mail de recuperação de senha" [disabled]="resourceForm.invalid"
+                  class="ui-button-primary"
+                  style="display: block; margin: 0 auto"></button>
+        </div>
+      </form>
+
+    </div>
+
+  </p-card>
+</section>

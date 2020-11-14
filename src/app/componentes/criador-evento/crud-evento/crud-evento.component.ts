@@ -30,11 +30,12 @@ export class CrudEventoComponent implements OnInit {
         {separator: true},
       ]
     },
-      {
-        label: 'Perfil',
-        items: [
-          {label: 'Ver perfil', icon: 'pi pi-fw pi-user'}
-        ]
-      }];
+      // {
+      //   label: 'Perfil',
+      //   items: [
+      //     {label: 'Ver perfil', icon: 'pi pi-fw pi-user'}
+      //   ]
+      // }
+      ];
   }
 }
