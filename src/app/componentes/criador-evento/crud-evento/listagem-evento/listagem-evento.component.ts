@@ -1,8 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {EventDTO} from "../../../../dominio/Event";
+import {EventDTO, SectionDTO} from "../../../../dominio/Event";
 import {EventService} from "../../../../services/event/event.service";
 import {ConfirmationService, MessageService, Table} from "primeng";
-import {ImageService} from "../../../../services/image/image.service";
 import {environment} from "../../../../../environments/environment";
 
 @Component({
@@ -25,6 +24,8 @@ export class ListagemEventoComponent implements OnInit {
 
     @ViewChild('dt') table: Table;
 
+    nomeEvento: string;
+
     constructor(private eventService: EventService) {
     }
 
@@ -40,5 +41,12 @@ export class ListagemEventoComponent implements OnInit {
         return `${this.apiImageURL}/images/${image.imageId}`;
     }
 
+    qtdInicial(section: SectionDTO) {
+        return section.tickets[0].initialQuantity
+    }
+
+    vendidos(section: SectionDTO) {
+        return section.tickets[0].ticketsReserved.length;
+    }
 
 }

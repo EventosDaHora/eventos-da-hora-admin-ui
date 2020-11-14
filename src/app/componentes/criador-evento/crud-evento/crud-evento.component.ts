@@ -29,13 +29,6 @@ export class CrudEventoComponent implements OnInit {
         {label: 'Calendário de Eventos', icon: 'pi pi-fw pi-calendar', routerLink: 'calendario'},
         {separator: true},
       ]
-    },
-      // {
-      //   label: 'Perfil',
-      //   items: [
-      //     {label: 'Ver perfil', icon: 'pi pi-fw pi-user'}
-      //   ]
-      // }
-      ];
+    }];
   }
 }

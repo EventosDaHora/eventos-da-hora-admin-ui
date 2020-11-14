@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-
-import { CalendarOptions } from '@fullcalendar/angular';
+import {Component, OnInit} from '@angular/core';
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
 
 @Component({
   selector: 'app-calendario-eventos',
@@ -15,13 +16,17 @@ export class CalendarioEventosComponent implements OnInit {
 
   options: any;
 
-  calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth',
-    height: 650
-  };
-
   ngOnInit(): void {
-
+    this.options = {
+      plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+      defaultDate: '2017-02-01',
+      header: {
+        left: 'prev,next',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      editable: true
+    };
   }
 
 }

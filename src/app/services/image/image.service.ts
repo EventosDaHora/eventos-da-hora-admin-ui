@@ -1,8 +1,7 @@
 import {Injectable, Injector} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {BaseResourceService} from "../base-resource.service";
-import {HttpClient, HttpEvent, HttpRequest} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
+import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ImageFile} from "../../dominio/image-file.model";
 import {catchError, map} from "rxjs/operators";
@@ -28,14 +27,6 @@ export class ImageService extends BaseResourceService{
     );
   }
 
-    const req = new HttpRequest('POST', this.urlImage, formData, {
-      reportProgress: true,
-      responseType: 'blob'
-    });
-
-    return this.http.request(req);
-  }
-
   getById(id: any): Observable<any> {
     const url = `${this.urlImage}/${id}`;
 
@@ -43,6 +34,4 @@ export class ImageService extends BaseResourceService{
         catchError(this.handlerError)
     );
   }
-
-
 }
