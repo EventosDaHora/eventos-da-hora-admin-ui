@@ -7,6 +7,7 @@ import {map} from "rxjs/operators";
 import {ImageService} from "../../../../services/image/image.service";
 import {ImageMetadata} from "../../../../infra/upload/upload.component";
 import {NgForm} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
     selector: 'app-criar-evento',
@@ -20,6 +21,7 @@ export class CriarEventoComponent implements OnInit, OnDestroy {
     categories: CategoryDTO[];
     idCategory: number;
     date: Date;
+    dateStr: string;
     hora: Date;
     ref: DynamicDialogRef;
     imageMetadata: ImageMetadata;
@@ -31,11 +33,19 @@ export class CriarEventoComponent implements OnInit, OnDestroy {
                 private categoryService: CategoryService,
                 private imageService: ImageService,
                 private messageService: MessageService,
-                private confirmationService: ConfirmationService) {
+                private confirmationService: ConfirmationService,
+                private route: ActivatedRoute) {
     }
 
     ngOnInit(): void {
         this.event = this.eventService.createEmptyEvent();
+        this.route.queryParams.subscribe(params => {
+            if (params['date']) {
+                this.dateStr = this.montaDataHora(new Date(params['date']));
+                this.date = new Date(this.dateStr.split('T')[0]);
+            }
+        })
+
         this.categoryService.getAll().pipe(
             map(categories => categories as CategoryDTO[])
         ).subscribe(categories => {
@@ -64,7 +74,7 @@ export class CriarEventoComponent implements OnInit, OnDestroy {
     }
 
     confirmacao(form: NgForm) {
-        this.montaDataHora();
+        this.event.date = this.montaDataHora(this.date);
         this.getIdCategoria();
         this.event.localization.cep = "123456";
         console.log(this.imageMetadata.file);
@@ -103,11 +113,12 @@ export class CriarEventoComponent implements OnInit, OnDestroy {
         this.event.idCategory = this.idCategory;
     }
 
-    montaDataHora() {
-        const date = this.date.toLocaleDateString('pt-BR');
+    montaDataHora(data) {
+        console.log(data)
+        const date = data.toLocaleDateString('pt-BR');
         const horas = this.hora.getHours() < 10 ? "0" + this.hora.getHours() : this.hora.getHours();
         const minutos = this.hora.getMinutes() < 10 ? "0" + this.hora.getMinutes() : this.hora.getMinutes();
-        this.event.date = `${date}T${horas}:${minutos}`;
+        return `${date}T${horas}:${minutos}`;
     }
 
 
