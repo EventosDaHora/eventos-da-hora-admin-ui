@@ -1,0 +1,74 @@
+<div class="p-grid">
+    <div class="p-col-12 p-md-4 p-lg-4">
+        <h4>Evento</h4>
+        <p>{{event.name}}</p>
+    </div>
+
+    <div class="p-col-12 p-md-4 p-lg-4">
+        <h4>Descrição</h4>
+        <p>{{event.description}}</p>
+    </div>
+
+    <div class="p-col-12 p-md-4 p-lg-4">
+        <h4>Categoria</h4>
+        <p>{{event.category.name}}</p>
+    </div>
+
+    <div class="p-col-12 p-md-12 p-lg-12">
+        <div class="p-grid">
+            <div class="p-col-12 p-md-6 p-lg-6" >
+                <h4 style="text-align: right">Data</h4>
+                <p style="text-align: right">{{data}}</p>
+            </div>
+
+            <div class="p-col-12 p-md-6 p-lg-6" >
+                <h4 style="text-align: left">Hora</h4>
+                <p style="text-align: left"> {{hora}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-4 p-lg-4">
+        <h4>País</h4>
+        <p>{{country}}</p>
+    </div>
+
+    <div class="p-col-12 p-md-4 p-lg-4">
+        <h4>Cidade</h4>
+        <p>{{city}}</p>
+    </div>
+
+    <div class="p-col-12 p-md-4 p-lg-4">
+        <h4>Endereço</h4>
+        <p>{{event.localization.address}}</p>
+    </div>
+
+</div>
+<hr>
+<h2>Seções</h2>
+
+<p-table [value]="event.sections" styleClass="p-datatable-gridlines">
+    <ng-template pTemplate="header" >
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Quantidade Inicial</th>
+            <th>Quantidade Vendida</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-section>
+        <tr style="text-align: center">
+            <td>{{section.name}}</td>
+            <td>{{section.description}}</td>
+            <td>{{section.ammount}}</td>
+            <td>{{qtdInicial(section)}}</td>
+            <td>{{qtdVendidos(section)}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<hr>
+<h2>Banner</h2>
+<img [src]="getImage(event)" alt="Imagem do evento">
+
