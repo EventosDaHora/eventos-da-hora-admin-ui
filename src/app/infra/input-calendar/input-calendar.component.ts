@@ -27,6 +27,8 @@ export class InputCalendarComponent extends InputComponent implements OnInit{
   @Input()
   inline ?: false;
 
+  minDate = new Date();
+
   constructor() {
     super();
     this.getTipo();

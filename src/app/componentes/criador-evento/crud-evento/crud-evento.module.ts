@@ -32,6 +32,7 @@ import {ImagemEventoComponent} from './criar-evento/imagem-evento/imagem-evento.
 import {PanelModule} from 'primeng/panel';
 import {FieldsetModule} from 'primeng/fieldset';
 import {NgSelectModule} from "@ng-select/ng-select";
+import {VerEventoComponent} from './ver-evento/ver-evento.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import {NgSelectModule} from "@ng-select/ng-select";
         CriarEventoComponent,
         CrudEventoComponent,
         CriarIngressoComponent,
-        ImagemEventoComponent
+        ImagemEventoComponent,
+        VerEventoComponent
     ],
     exports: [
         ListagemEventoComponent

@@ -1,24 +1,27 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin, {DateClickArg} from "@fullcalendar/interaction";
-import {CalendarOptions, DateSelectArg, EventApi, EventClickArg, EventInput} from '@fullcalendar/angular';
+import {CalendarOptions, EventApi, EventClickArg, EventInput} from '@fullcalendar/angular';
 import {EventService} from "../../../../services/event/event.service";
 import {EventDTO} from "../../../../dominio/Event";
 import {map} from "rxjs/operators";
 import {DatesSetArg} from "@fullcalendar/common";
 import {Router} from "@angular/router";
-import {Montadata} from "../../util/data/Montadata";
+import {DialogService, DynamicDialogRef} from "primeng";
+import {VerEventoComponent} from "../../crud-evento/ver-evento/ver-evento.component";
 
 @Component({
     selector: 'app-calendario-eventos',
     templateUrl: './calendario-eventos.component.html',
-    styleUrls: ['./calendario-eventos.component.scss']
+    styleUrls: ['./calendario-eventos.component.scss'],
+    providers: [DialogService]
 })
-export class CalendarioEventosComponent implements OnInit{
+export class CalendarioEventosComponent implements OnInit, OnDestroy {
 
     constructor(private eventService: EventService,
-                private router: Router) {
+                private router: Router,
+                private dialogService: DialogService) {
     }
 
     currentEvents: EventApi[] = [];
@@ -27,10 +30,11 @@ export class CalendarioEventosComponent implements OnInit{
 
     events: EventDTO[];
 
+    ref: DynamicDialogRef;
+
     options: CalendarOptions = {
         datesSet: this.buscaEventos.bind(this),
         dateClick: this.handleDateClick.bind(this),
-        select: this.handleDateSelect.bind(this),
         eventClick: this.handleEventClick.bind(this),
         eventsSet: this.handleEvents.bind(this),
         plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
@@ -63,43 +67,40 @@ export class CalendarioEventosComponent implements OnInit{
 
 
     handleDateClick(dateClickArg: DateClickArg) {
-        Montadata.montaDataHora(dateClickArg.date, dateClickArg.date);
-        const confirmou = confirm(`Confirma inserção do evento em ${dateClickArg.date}?`);
+        if (dateClickArg.date.getTime() < new Date().getTime()) {
+            return;
+        }
+        const date = dateClickArg.date.toLocaleDateString().split('T')[0];
+        const confirmou = confirm(`Confirma inserção do evento em ${date}?`);
         if (confirmou) {
             this.router.navigate(['/crud', 'criar-evento'],
                 {
                     queryParams: {
-                        date: dateClickArg.date
+                        date
                     }
                 });
         }
     }
 
-    handleDateSelect(selectInfo: DateSelectArg) {
-        const title = prompt('Please enter a new title for your event');
-        const calendarApi = selectInfo.view.calendar;
-
-        calendarApi.unselect(); // clear date selection
-
-        if (title) {
-            calendarApi.addEvent({
-                id: '12321',
-                title,
-                start: selectInfo.startStr,
-                end: selectInfo.endStr,
-                allDay: selectInfo.allDay
-            });
-        }
-    }
-
     handleEventClick(clickInfo: EventClickArg) {
-        if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-            clickInfo.event.remove();
-        }
+        const calendarApi = clickInfo.view.calendar;
+        const event = calendarApi.getEventById(clickInfo.event.id);
+        this.ref = this.dialogService.open(VerEventoComponent, {
+            header: `${event.title}`,
+            width: '70%',
+            baseZIndex: 10000,
+            data: { event }
+        });
     }
 
     handleEvents(events: EventApi[]) {
         this.currentEvents = events;
+    }
+
+    ngOnDestroy() {
+        if (this.ref) {
+            this.ref.close();
+        }
     }
 
 }

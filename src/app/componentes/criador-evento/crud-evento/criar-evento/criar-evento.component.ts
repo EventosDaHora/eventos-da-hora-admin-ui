@@ -7,7 +7,7 @@ import {map} from "rxjs/operators";
 import {ImageService} from "../../../../services/image/image.service";
 import {ImageMetadata} from "../../../../infra/upload/upload.component";
 import {NgForm} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'app-criar-evento',
@@ -41,8 +41,11 @@ export class CriarEventoComponent implements OnInit, OnDestroy {
         this.event = this.eventService.createEmptyEvent();
         this.route.queryParams.subscribe(params => {
             if (params['date']) {
-                this.dateStr = this.montaDataHora(new Date(params['date']));
-                this.date = new Date(this.dateStr.split('T')[0]);
+                const date: string = params['date'];
+                const dia = date.split('/')[0];
+                const mes = date.split('/')[1];
+                const ano = date.split('/')[2];
+                this.date = new Date(Number(ano), Number(mes) - 1, Number(dia));
             }
         })
 
@@ -114,7 +117,6 @@ export class CriarEventoComponent implements OnInit, OnDestroy {
     }
 
     montaDataHora(data) {
-        console.log(data)
         const date = data.toLocaleDateString('pt-BR');
         const horas = this.hora.getHours() < 10 ? "0" + this.hora.getHours() : this.hora.getHours();
         const minutos = this.hora.getMinutes() < 10 ? "0" + this.hora.getMinutes() : this.hora.getMinutes();
