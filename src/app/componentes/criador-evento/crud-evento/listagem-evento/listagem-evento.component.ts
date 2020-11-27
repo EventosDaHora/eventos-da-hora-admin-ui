@@ -46,7 +46,12 @@ export class ListagemEventoComponent implements OnInit {
     }
 
     vendidos(section: SectionDTO) {
-        return section.tickets[0].ticketsReserved.length;
+        if (section && section.tickets[0]){
+            return section.tickets[0].ticketsReserved
+                                        .map(ticket => ticket.qtdTicketsReserved)
+                                        .reduce((a, b) => a + b, 0);
+        }
+        return 0;
     }
 
 }
